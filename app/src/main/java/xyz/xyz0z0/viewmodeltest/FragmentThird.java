@@ -41,6 +41,7 @@ public class FragmentThird extends Fragment {
         tvText1 = view.findViewById(R.id.tv_text1);
         tvText1.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
+                Log.d("cxg","tvText1 Third");
                 model.getSelected().postValue(new Item("长贵"));
             }
         });

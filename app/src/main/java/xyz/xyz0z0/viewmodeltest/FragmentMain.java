@@ -26,22 +26,25 @@ public class FragmentMain extends Fragment {
     private FragmentSecond fragmentSecond;
     private FragmentThird fragmentThird;
 
+
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         model = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         model.getSelected().observe(this, new Observer<Item>() {
             @Override public void onChanged(Item item) {
-                Log.d("cxg", "First " + Thread.currentThread().getName());
-                Toast.makeText(getActivity(), "First", Toast.LENGTH_SHORT).show();
+                Log.d("cxg", "Main " + Thread.currentThread().getName());
+                Toast.makeText(getActivity(), "Main", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     private void findView(View view) {
         btnAdd = view.findViewById(R.id.btn_add);
         flFirst = view.findViewById(R.id.fl_first);
         flSecond = view.findViewById(R.id.fl_second);
     }
+
 
     @Nullable
     @Override
@@ -53,11 +56,13 @@ public class FragmentMain extends Fragment {
         return view;
     }
 
+
     private void initView() {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 new Thread(new Runnable() {
                     @Override public void run() {
+                        Log.d("cxg", "btnAdd");
                         getFragmentManager().beginTransaction().add(R.id.fl_container, fragmentThird)
                             .addToBackStack("11").commit();
                     }
