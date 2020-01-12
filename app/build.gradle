@@ -31,6 +31,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
+    // 弹窗 https://github.com/li-xiaojun/XPopup
+    implementation 'com.lxj:xpopup:1.8.10'
+    //
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     def lifecycle_version = "2.1.0"
 
     // ViewModel and LiveData

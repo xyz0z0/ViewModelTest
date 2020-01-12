@@ -5,27 +5,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_add"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="跳转" />
 
-        <Button
-            android:id="@+id/btn_add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="增加" />
+    <Button
+        android:id="@+id/btn_show_popup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="弹窗" />
 
-        <FrameLayout
-            android:id="@+id/fl_first"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
+    <FrameLayout
+        android:id="@+id/fl_first"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 
-        <FrameLayout
-            android:id="@+id/fl_second"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
-    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fl_second"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 
 </LinearLayout>

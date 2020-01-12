@@ -19,6 +19,8 @@ public class FragmentFirst extends Fragment {
 
     private SharedViewModel model;
     private TextView tvText1;
+    private Item item;
+
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +34,18 @@ public class FragmentFirst extends Fragment {
         });
     }
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         tvText1 = view.findViewById(R.id.tv_text1);
+        tvText1.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                item = new Item("我是第一个页面的");
+                model.getSelected().postValue(item);
+            }
+        });
         return view;
     }
 
