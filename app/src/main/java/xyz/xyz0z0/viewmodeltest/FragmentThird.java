@@ -62,9 +62,18 @@ public class FragmentThird extends Fragment {
                 itemData.test = "Third";
             }
         });
+        testValue();
         return view;
     }
 
+    private void testValue() {
+        Item item = model.getLiveSelected().getValue();
+        if (item == null) {
+            Log.d("cxg", "11null ");
+        } else {
+            Log.d("cxg", "11not null " + item.name);
+        }
+    }
 
     @Override public void onResume() {
         super.onResume();

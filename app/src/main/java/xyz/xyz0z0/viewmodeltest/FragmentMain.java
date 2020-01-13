@@ -34,7 +34,6 @@ public class FragmentMain extends Fragment {
     private Button btnShowPopup;
     private Item itemData;
 
-
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         model = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
@@ -48,6 +47,7 @@ public class FragmentMain extends Fragment {
     }
 
 
+
     private void findView(View view) {
         btnAdd = view.findViewById(R.id.btn_add);
         flFirst = view.findViewById(R.id.fl_first);
@@ -55,17 +55,17 @@ public class FragmentMain extends Fragment {
         btnShowPopup = view.findViewById(R.id.btn_show_popup);
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         findView(view);
         initView();
+
+
         // tvText1 = view.findViewById(R.id.tv_text1);
         return view;
     }
-
 
     private void showPopup(View v) {
         String title = "测试弹窗";
@@ -101,13 +101,18 @@ public class FragmentMain extends Fragment {
 
     }
 
-
     private void initView() {
         btnShowPopup.setOnClickListener(v -> {
             // showPopup(v);
             // Log.d("cxg", "item " + itemData.test);
             // Log.d("cxg", "item " + itemData.name);
-            getActivity().getSupportFragmentManager().beginTransaction().hide(fragmentFirst).commit();
+            // getActivity().getSupportFragmentManager().beginTransaction().hide(fragmentFirst).commit();
+            Item item = model.getLiveSelected().getValue();
+            if (item == null) {
+                Log.d("cxg", "null ");
+            } else {
+                Log.d("cxg", "not null " + item.name);
+            }
         });
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {

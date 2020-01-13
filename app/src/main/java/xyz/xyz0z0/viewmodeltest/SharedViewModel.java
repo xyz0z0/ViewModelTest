@@ -35,4 +35,8 @@ public class SharedViewModel extends ViewModel {
         return selected;
     }
 
+    public  LiveData<Item> getLiveSelected() {
+        return selected;
+    }
+
 }
