@@ -59,7 +59,7 @@ public class FragmentThird extends Fragment {
         tvText1 = view.findViewById(R.id.tv_text1);
         tvText1.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                itemData.test = "Third";
+                itemData.age = "Third";
             }
         });
         testValue();

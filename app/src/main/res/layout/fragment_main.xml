@@ -16,6 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="弹窗" />
+    <Button
+        android:id="@+id/btn_change_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改 name" />
+
+    <Button
+        android:id="@+id/btn_change_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改 age" />
 
     <FrameLayout
         android:id="@+id/fl_first"

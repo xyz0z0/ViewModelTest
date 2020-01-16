@@ -5,7 +5,7 @@ package xyz.xyz0z0.viewmodeltest;
  */
 public class Item {
     public String name;
-    public String test;
+    public String age;
 
     public Item(String name) {
         this.name = name;

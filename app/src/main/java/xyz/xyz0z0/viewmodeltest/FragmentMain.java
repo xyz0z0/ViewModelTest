@@ -26,6 +26,8 @@ public class FragmentMain extends Fragment {
 
     private SharedViewModel model;
     private Button btnAdd;
+    private Button btnChangeName;
+    private Button btnChangeAge;
     private FrameLayout flFirst;
     private FrameLayout flSecond;
     private FragmentFirst fragmentFirst;
@@ -46,13 +48,13 @@ public class FragmentMain extends Fragment {
         });
     }
 
-
-
     private void findView(View view) {
         btnAdd = view.findViewById(R.id.btn_add);
         flFirst = view.findViewById(R.id.fl_first);
         flSecond = view.findViewById(R.id.fl_second);
         btnShowPopup = view.findViewById(R.id.btn_show_popup);
+        btnChangeName = view.findViewById(R.id.btn_change_name);
+        btnChangeAge = view.findViewById(R.id.btn_change_age);
     }
 
     @Nullable
@@ -61,7 +63,6 @@ public class FragmentMain extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         findView(view);
         initView();
-
 
         // tvText1 = view.findViewById(R.id.tv_text1);
         return view;
@@ -102,9 +103,31 @@ public class FragmentMain extends Fragment {
     }
 
     private void initView() {
+        // model.getPerson().addSource(model.getName(), new Observer<String>() {
+        //     @Override public void onChanged(String s) {
+        //         Log.d("cxg", "-getName- " + s);
+        //     }
+        // });
+        // model.getPerson().addSource(model.getAge(), new Observer<String>() {
+        //     @Override public void onChanged(String s) {
+        //         Log.d("cxg", "-getAge- " + s);
+        //     }
+        // });
+        model.getPerson().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override public void onChanged(String s) {
+                Log.d("cxg", "-observe-" + s);
+            }
+        });
+        btnChangeName.setOnClickListener(v -> {
+            model.setName("王大锤");
+        });
+        btnChangeAge.setOnClickListener(v -> {
+            model.setAge("20");
+        });
+
         btnShowPopup.setOnClickListener(v -> {
             // showPopup(v);
-            // Log.d("cxg", "item " + itemData.test);
+            // Log.d("cxg", "item " + itemData.age);
             // Log.d("cxg", "item " + itemData.name);
             // getActivity().getSupportFragmentManager().beginTransaction().hide(fragmentFirst).commit();
             Item item = model.getLiveSelected().getValue();

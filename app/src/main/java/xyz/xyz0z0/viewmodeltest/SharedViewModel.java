@@ -1,8 +1,9 @@
 package xyz.xyz0z0.viewmodeltest;
 
-import android.util.Log;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 /**
@@ -10,32 +11,61 @@ import androidx.lifecycle.ViewModel;
  */
 public class SharedViewModel extends ViewModel {
 
-    private LiveData<String> name;
+    private MutableLiveData<Item> selected = new MutableLiveData<>();
+    private MutableLiveData<String> name = new MutableLiveData<>();
+    private MutableLiveData<String> age = new MutableLiveData<>();
+    private MediatorLiveData<String> person = new MediatorLiveData<>();
 
-    public LiveData<String> getName() {
-        Log.d("cxg","getName");
-        if (name == null) {
-            name = new MutableLiveData<String>();
-            loadUsers();
-        }
+    public SharedViewModel() {
+        person.addSource(name, new Observer<String>() {
+            @Override public void onChanged(String s) {
+                if (name.getValue() == null || age.getValue() == null) {
+                    person.setValue("");
+                } else {
+                    person.setValue(name.getValue() + " == " + age.getValue());
+                }
+            }
+        });
+        person.addSource(age, new Observer<String>() {
+            @Override public void onChanged(String s) {
+                if (name.getValue() == null || age.getValue() == null) {
+                    person.setValue("");
+                } else {
+                    person.setValue(name.getValue() + " == " + age.getValue());
+                }
+            }
+        });
+    }
+
+    public MutableLiveData<String> getName() {
         return name;
     }
 
-    private void loadUsers() {
-
+    public void setName(String value) {
+        this.name.setValue(value);
     }
 
-    private final MutableLiveData<Item> selected = new MutableLiveData<Item>();
+    public MutableLiveData<String> getAge() {
+        return age;
+    }
 
-    public void setSelected(Item item) {
-        selected.setValue(item);
+    public void setAge(String value) {
+        this.age.setValue(value);
+    }
+
+    public MediatorLiveData<String> getPerson() {
+        return person;
     }
 
     public MutableLiveData<Item> getSelected() {
         return selected;
     }
 
-    public  LiveData<Item> getLiveSelected() {
+    public void setSelected(Item item) {
+        selected.setValue(item);
+    }
+
+    public LiveData<Item> getLiveSelected() {
         return selected;
     }
 
